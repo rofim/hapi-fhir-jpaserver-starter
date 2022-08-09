@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - /Users/azizessid/.m2:/home/
+      - ~/.m2:/home/
   hapi-fhir-postgrey:
     image: postgres:latest
     container_name: hapi-fhir-postgrey
