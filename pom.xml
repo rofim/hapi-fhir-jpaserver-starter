@@ -43,6 +43,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>rofim.doctor</groupId>
+            <artifactId>hapi-interceptor</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-api</artifactId>
             <version>${jetty_version}</version>
