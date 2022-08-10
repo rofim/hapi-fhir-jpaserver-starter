@@ -1,5 +1,15 @@
 # HAPI-FHIR Starter Project
 
+## To launch project
+
+Rename .settings.exemple.xml to .settings.xml.
+Don't forget to replace YOUR GITHUB USERNAME by your username 
+            <username>YOUR GITHUB USERNAME</username>
+            <!--- https://catalyst.zoho.com/help/tutorials/githubbot/generate-access-token.html -->
+            <password>YOUR TOKEN</password>
+and TOKEN by an access token
+
+
 ## To update forked project from origin
 
 ```sh
