@@ -7,8 +7,7 @@ RUN curl -LSsO https://github.com/open-telemetry/opentelemetry-java-instrumentat
 COPY pom.xml .
 COPY server.xml .
 
-RUN mkdir /root/.m2
-COPY settings.xml ~/.m2/settings.xml
+COPY settings.xml /root/.m2/settings.xml
 
 RUN mvn -ntp dependency:go-offline
 

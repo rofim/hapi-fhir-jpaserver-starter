@@ -45,7 +45,7 @@
         <dependency>
             <groupId>rofim.doctor</groupId>
             <artifactId>hapi-interceptor</artifactId>
-            <version>1.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
