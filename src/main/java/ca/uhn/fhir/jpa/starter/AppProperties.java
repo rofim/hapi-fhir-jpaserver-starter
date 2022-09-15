@@ -23,7 +23,7 @@ public class AppProperties {
 
   private Boolean cql_enabled = false;
   private Boolean openapi_enabled = false;
-  private Boolean mdm_enabled = false;
+  private Boolean mdm_enabled = true;
   private boolean advanced_lucene_indexing = false;
   private boolean enable_index_of_type = false;
   private Boolean allow_cascading_deletes = false;
