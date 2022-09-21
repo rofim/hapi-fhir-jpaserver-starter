@@ -43,6 +43,7 @@
                connectionTimeout="20000"
                redirectPort="8443" 
                maxThreads="${server.tomcat.max-threads}"
+               relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
                minSpareThreads="${server.tomcat.min-spare-threads}" /> 
 
     <!-- You should set jvmRoute to support load-balancing via AJP ie :

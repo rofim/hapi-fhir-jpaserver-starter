@@ -63,7 +63,6 @@ public class Application extends SpringBootServletInitializer {
 		servletRegistrationBean.setLoadOnStartup(1);
 		return servletRegistrationBean;
 	}
-
 	@Bean
 	public ServletRegistrationBean overlayRegistrationBean() {
 		AnnotationConfigWebApplicationContext annotationConfigWebApplicationContext = new AnnotationConfigWebApplicationContext();

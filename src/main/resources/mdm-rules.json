@@ -1,48 +1,119 @@
 {
   "version": "1",
-  "mdmTypes": ["Patient", "Practitioner"],
+  "mdmTypes" : ["Organization", "Patient", "Practitioner"],
   "candidateSearchParams": [
     {
       "resourceType": "Patient",
-      "searchParams": ["birthdate"]
-    },
-    {
-      "resourceType": "*",
-      "searchParams": ["identifier"]
+      "searchParams": [
+        "phone"
+      ]
     },
     {
       "resourceType": "Patient",
-      "searchParams": ["general-practitioner"]
-    }
-  ],
-  "candidateFilterSearchParams": [
+      "searchParams": [
+        "birthdate"
+      ]
+    },
     {
-      "resourceType": "*",
-      "searchParam": "active",
-      "fixedValue": "true"
+      "resourceType": "Patient",
+      "searchParams": [
+        "identifier"
+      ]
+    },
+    {
+      "resourceType": "Patient",
+      "searchParams": [
+        "given"
+      ]
+    },
+    {
+      "resourceType": "Patient",
+      "searchParams": [
+        "family"
+      ]
     }
   ],
+  "candidateFilterSearchParams": [],
   "matchFields": [
     {
-      "name": "cosine-given-name",
-      "resourceType": "*",
-      "resourcePath": "name.given",
+      "name": "birthday",
+      "resourceType": "Patient",
+      "resourcePath": "birthDate",
       "matcher": {
-        "algorithm": "COLOGNE"
+        "algorithm": "STRING"
       }
     },
     {
-      "name": "jaro-last-name",
-      "resourceType": "*",
+      "name": "phone",
+      "resourceType": "Patient",
+      "resourcePath": "telecom.value",
+      "matcher": {
+        "algorithm": "STRING"
+      }
+    },
+    {
+      "name": "firstname-meta",
+      "resourceType": "Patient",
+      "fhirPath": "name.given.first()",
+      "matcher": {
+        "algorithm": "METAPHONE"
+      }
+    },
+    {
+      "name": "lastname-meta",
+      "resourceType": "Patient",
       "resourcePath": "name.family",
       "matcher": {
-        "algorithm": "SOUNDEX"
+        "algorithm": "METAPHONE"
+      }
+    },
+    {
+      "name": "firstname-jaro",
+      "resourceType": "Patient",
+      "resourcePath": "name.given",
+      "similarity": {
+        "algorithm": "JARO_WINKLER",
+        "matchThreshold": 0.80
+      }
+    },
+    {
+      "name": "lastname-jaro",
+      "resourceType": "Patient",
+      "resourcePath": "name.family",
+      "similarity": {
+        "algorithm": "JARO_WINKLER",
+        "matchThreshold": 0.80
+      }
+    },
+    {
+      "name": "org-name",
+      "resourceType": "Organization",
+      "resourcePath": "name",
+      "matcher": {
+        "algorithm": "STRING"
+      }
+    },
+    {
+      "name": "identifier",
+      "resourceType": "Patient",
+      "resourcePath": "identifier",
+      "matcher": {
+        "algorithm": "IDENTIFIER"
       }
     }
   ],
   "matchResultMap": {
-    "cosine-given-name" : "POSSIBLE_MATCH",
-    "cosine-given-name,jaro-last-name" : "MATCH"
+    "identifier": "MATCH",
+    "firstname-meta,lastname-meta,birthday": "MATCH",
+    "firstname-meta,lastname-meta,phone": "MATCH",
+    "firstname-jaro,lastname-jaro,birthday": "POSSIBLE_MATCH",
+    "firstname-jaro,lastname-jaro,phone": "POSSIBLE_MATCH",
+    "lastname-jaro,phone,birthday": "POSSIBLE_MATCH",
+    "firstname-jaro,phone,birthday": "POSSIBLE_MATCH",
+    "org-name": "MATCH"
   },
-  "eidSystem": "http://company.io/fhir/NamingSystem/custom-eid-system"
+  "eidSystems": {
+    "Organization": "https://hapifhir.org/identifier/naming/business-number",
+    "Practitioner": "https://hapifhir.org/identifier/naming/license-number"
+  }
 }

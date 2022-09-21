@@ -6,7 +6,6 @@ RUN curl -LSsO https://github.com/open-telemetry/opentelemetry-java-instrumentat
 
 COPY pom.xml .
 COPY server.xml .
-
 COPY settings.xml /root/.m2/settings.xml
 
 RUN mvn -ntp dependency:go-offline
@@ -17,6 +16,7 @@ RUN mvn clean install -DskipTests -Djdk.lang.Process.launchMechanism=vfork
 FROM build-hapi AS build-distroless
 RUN mvn package spring-boot:repackage -Pboot
 RUN mkdir /app && cp /tmp/hapi-fhir-jpaserver-starter/target/ROOT.war /app/TestMain.war
+RUN cp /tmp/hapi-fhir-jpaserver-starter/target/ROOT-classes.jar /app/ROOT-classes.jar
 
 ########### bitnami tomcat version is suitable for debugging and comes with a shell
 ########### it can be built using eg. `docker build --target tomcat .`
